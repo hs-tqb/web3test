@@ -1,0 +1,30 @@
+{
+  "name": "web3test",
+  "version": "1.0.0",
+  "description": "web3test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hs-tqb/web3test.git"
+  },
+  "keywords": [
+    "node",
+    "web3"
+  ],
+  "author": "hs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hs-tqb/web3test/issues"
+  },
+  "homepage": "https://github.com/hs-tqb/web3test#readme",
+  "dependencies": {
+    "geth": "^0.4.0",
+    "koa": "^2.5.1",
+    "nodemon": "^1.17.4",
+    "web3": "^0.20.1"
+  }
+}
