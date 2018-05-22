@@ -28,7 +28,7 @@ koa.use(async (ctx)=>{
       else resolve(JSON.stringify(result))
     })
   }).catch(err=>{
-    console.log('err')
+    console.log(err.toString)
   })
 })
 
