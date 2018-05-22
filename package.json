@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/hs-tqb/web3test#readme",
   "dependencies": {
+    "geth": "^0.4.0",
     "koa": "^2.5.1",
     "nodemon": "^1.17.4",
     "web3": "^0.20.1"
