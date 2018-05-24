@@ -19,16 +19,16 @@ const port = '5555'
 
 // web3
 const Web3 = require('web3')
-const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
 
 koa.use(async (ctx)=>{
   ctx.body = await new Promise((resolve,reject)=>{
     web3.eth.getAccounts((err,result)=>{
-      if ( err ) return reject(JSON.stringify(err))
+      if ( err ) return reject(JSON.stringify(err.toString()))
       else resolve(JSON.stringify(result))
     })
   }).catch(err=>{
-    console.log(err.toString())
+    console.log(err);
   })
 })
 
