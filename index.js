@@ -47,7 +47,12 @@ eth.getBlockNumber((err,res)=>{
 
 
 koa.use(async (ctx)=>{
-  ctx.body = 'hello, world: ' + Date.now()
+  ctx.body = await new Promise((resolve,reject)=>{
+    eth.getBlockNumber((err,result)=>{
+      if ( err ) reject(-1)
+      else resolve(result)
+    })
+  })
 })
 
 koa.listen(port)
