@@ -4,6 +4,16 @@ const koa  = new Koa()
 const host = '127.0.0.1'
 const port = '4444'
 
+koa.use(function(ctx){
+  ctx.body = eth.blockNumber
+})
+
+koa.listen(port)
+console.log( `server runnint at: ${host}:${port}` );
+
+
+
+
 // web3
 /*
  * Mainnet	production network  https://mainnet.infura.io/your-api-key
@@ -15,45 +25,38 @@ const port = '4444'
  */
 const Web3 = require('web3')
 // const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
-// const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
+// const web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/"));
+// const web3 = new Web3(new Web3.providers.HttpProvider("wss://mainnet.infura.io/ws"));
+// const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws'));
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.28.129:8545"));
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 const eth  = web3.eth;
 
+// geth 启动命令：
+// geth --testnet --rpc --rpcapi db,eth,net,web3,personal --rpccorssdomain "*" --rpcaddr 127.0.0.1 --rpcport 8545 console
+
 
 // contract
-process.env.NODE_ENV = 'development'
 const contractConfig = require('./assets/js/contract')
-const contract = eth.contract(contractConfig.abi).at('0x2D05359A51ca13C4ac5f4437585AFaf5bF2050F9')
-let bet = contract.LogBet(
-    { _userAddress: '' },
-    { fromBlock   :3303936-(60*24*15) * 7}
-  );
-
-// bet.watch((err,result)=>{
-//   console.log('______________rb')
-//   console.log( err||result )
-//   console.log('______________rb')
-// })
+const contract = eth.contract(contractConfig.abi).at(contractConfig.address)
 
 
+// console.log( eth.getTransactionReceipt )
 
 
-eth.getBlockNumber((err,res)=>{
-  console.log('________________')
-  console.log(err||res)
-  console.log('________________')
-})
+console.log( eth.blockNumber )
 
 
-koa.use(async (ctx)=>{
-  ctx.body = await new Promise((resolve,reject)=>{
-    eth.getBlockNumber((err,result)=>{
-      if ( err ) reject(-1)
-      else resolve(result)
-    })
+// 自运行
+;(function(){
+  return;
+  let bet = contract.LogBet(
+    // { _userAddress: '' },
+    { fromBlock:eth.blockNumber-(60*24*15) * 7}
+  )
+  bet.watch((err,result)=>{
+    console.log( err? err: 'done'  )
   })
-})
-
-koa.listen(port)
-console.log( `server runnint at: ${host}:${port}` );
+  // 
+  // console.log( web3.fromWei(eth.getBalance(contractConfig.address).toNumber()), ' ETH' )
+})()
