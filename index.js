@@ -5,7 +5,11 @@ const host = '127.0.0.1'
 const port = '4444'
 
 koa.use(function(ctx){
-  ctx.body = eth.blockNumber
+  ctx.body = {
+    syncing:eth.syncing,
+    accounts:eth.accounts,
+    blockNumber:eth.blockNumber
+  }
 })
 
 koa.listen(port)
