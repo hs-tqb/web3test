@@ -42,21 +42,21 @@ const blockNumber = eth.blockNumber
 // contract
 const contractConfig = require('./assets/js/contract')
 const contract = eth.contract(contractConfig.abi).at(contractConfig.address)
-console.log( blockNumber )
+console.log( eth.syncing, blockNumber )
 
 
 // console.log( eth.getTransactionReceipt )
 
 // console.log( Object.keys(contract) )
 // allEvents 没有动静
-contract.allEvents({
-  // _userAddress: '',
-  fromBlock:blockNumber-(60*24*15) * 7
-},(err,res)=>{
-  console.log('_______________s');
-  console.log(err? 'err': res.event)
-  console.log('_______________e');
-})
+// contract.allEvents({
+//   // _userAddress: '',
+//   fromBlock:blockNumber-(60*24*15) * 7
+// },(err,res)=>{
+//   console.log('_______________s');
+//   console.log(err? 'err': res.event)
+//   console.log('_______________e');
+// })
 
 
 // 自运行
