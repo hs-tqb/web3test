@@ -45,11 +45,11 @@ console.log( `server runnint at: ${host}:${port}` );
  */
 
 const Web3 = require('web3')
-const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
+// const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.28.130:8545"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://172.26.0.3:8545"));
-// const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
 const eth  = web3.eth;
 const blockNumber = eth.blockNumber
