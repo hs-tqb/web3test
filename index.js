@@ -7,7 +7,7 @@ const port = '4444'
 koa.use(async ctx=>{
 
   let balance = await new Promise((resolve,reject)=>{
-    eth.getBalance('0x3d6b00353891e7811465b3a30644e77f13e36afb', (e,r)=>{
+    eth.getBalance(eth.accounts[0], (e,r)=>{
       // console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
       // console.log(e||web3.fromWei(r.toNumber()))
       // console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
