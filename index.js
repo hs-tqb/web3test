@@ -4,11 +4,25 @@ const koa  = new Koa()
 const host = '127.0.0.1'
 const port = '4444'
 
-koa.use(function(ctx){
+koa.use(async ctx=>{
+  let balance = await new Promise((resolve,reject)=>{
+    eth.getBalance(eth.accounts[0], (e,r)=>{
+      // console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
+      // console.log(e||web3.fromWei(r.toNumber()))
+      // console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
+      if (e) reject(0)
+      else resolve(web3.fromWei(r.toNumber()))
+    })
+    .catch(err=>{
+      reject(err)
+    })
+  })
+
   ctx.body = {
     syncing:eth.syncing,
     accounts:eth.accounts,
-    blockNumber:eth.blockNumber
+    blockNumber:eth.blockNumber,
+    balance,
   }
 })
 
@@ -30,11 +44,11 @@ console.log( `server runnint at: ${host}:${port}` );
  */
 
 const Web3 = require('web3')
-// const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
+const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.28.130:8545"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://172.26.0.3:8545"));
-const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+// const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
 const eth  = web3.eth;
 const blockNumber = eth.blockNumber
@@ -60,6 +74,13 @@ console.log( eth.syncing, blockNumber )
 //   console.log('_______________s');
 //   console.log(err? 'err': res.event)
 //   console.log('_______________e');
+// })
+
+
+// eth.getBalance('0x3d6b00353891e7811465b3a30644e77f13e36afb', (e,r)=>{
+//   console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
+//   console.log(e||web3.fromWei(r.toNumber()))
+//   console.log('~~~~~~~~~~~~~~~~~~~~~~~~')
 // })
 
 
