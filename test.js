@@ -8,6 +8,7 @@ const account = eth.accounts[0]
 
 console.log(`账户：${account}`)
 console.log(`区块数：${eth.blockNumber}`)
+if ( account )
 eth.getBalance(account, function(err,result) {
     console.log(`余额：${err||result.toNumber()}`);
 });
