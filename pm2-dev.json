@@ -2,8 +2,11 @@
   "apps":[
     {
       "name":"web3test",
-      "script":"npm run dev",
+      "script":"/mnt/data/wwwroot/web/web3test/test.js",
       "watch":false,
+      "args":[
+        ""
+      ],
       "env": {
         "NODE_ENV":"development"
       },
