@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ValPromise</title>
+  <style>
+    p { display:none; margin-top:100px; line-height:2; text-align:center; }
+  </style>
+</head>
+<body>
+  <p id="tipsForIPhone">
+    暂无 IOS 端 APP
+  </p>
+  <p id="tipsForWechat">请使用系统浏览器打开</h1>
+  <p id="tipsForAndroid">
+    APP 将自动下载...
+    <br>如果没有下载, 请点击<a id="link" href="">手动下载</a>
+  </p>
+  <script>
+    var isWechat = /MicroMessenger/gi.test(navigator.userAgent)
+    var isIPhone = /iPhone|ipad|ipod|ios/gi.test(navigator.userAgent)
+    var link     = "http://download.valp.io/ValPromise_v2.0.apk"
+
+
+    if ( isIPhone ) {
+      document.querySelector('#tipsForIPhone').style.display = 'block';
+    } else if ( isWechat ) {
+      document.querySelector('#tipsForWechat').style.display = 'block'
+    } else {
+      // location.href = link
+      document.querySelector('#tipsForAndroid').style.display = 'block'
+      document.querySelector('#link').setAttribute('href', link)
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "apps":[{
+    "name":"geth-mainnet",
+    "cwd":"./",
+    "script":"geth",
+    "args":"--datadir /mnt/data/ehtereum --fast --rpc --rpcapi db,eth,net,web3,personal --rpccorsdomain * --rpcaddr 127.0.0.1 --rpcport 8545",
+    "watch":true,
+    "exec_mode":"fork_mode"
+  },{
+    "name":"web3test",
+    "cwd":"/mnt/data/wwwroot/web/web3test",
+    "script":"npm",
+    "args":"run dev"
+  }]
+}
+
+
+
+// geth --datadir /mnt/data/ehtereum --fast --rpc --rpcapi db,eth,net,web3,personal --rpccorsdomain * --rpcaddr 127.0.0.1 --rpcport 8545 console

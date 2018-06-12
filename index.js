@@ -45,12 +45,13 @@ console.log( `server runnint at: ${host}:${port}` );
  */
 
 const Web3 = require('web3')
+// RPC
 // const web3 = new Web3(new Web3.providers.HttpProvider("https://jsonrpc.medishares.net"));
-// const web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/"));
-// const web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.28.130:8545"));
-// const web3 = new Web3(new Web3.providers.HttpProvider("http://172.26.0.3:8545"));
-const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-// const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io"));
+// const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+// const web3 = new Web3(new Web3.providers.HttpProvider("http://47.75.185.67:8545"));
+// SOCKET
+const web3 =  new Web3('ws://47.75.185.67:8546', {headers:{Origin:'*'}});
+
 const eth  = web3.eth;
 const blockNumber = eth.blockNumber
 // geth 启动命令：
