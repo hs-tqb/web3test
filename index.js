@@ -50,7 +50,7 @@ const Web3 = require('web3')
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 // const web3 = new Web3(new Web3.providers.HttpProvider("http://47.75.185.67:8545"));
 // SOCKET
-const web3 =  new Web3('ws://47.75.185.67:8546', {headers:{Origin:'*'}});
+const web3 =  new Web3('ws://localhost:8546');
 
 const eth  = web3.eth;
 const blockNumber = eth.blockNumber
